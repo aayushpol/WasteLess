@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Welcome to WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="onboarding-screen">
+
+        <div class="onboarding-card">
+
+            <div class="onboarding-icon">
+                🌱
+            </div>
+
+            <h1>Let's reduce<br>food waste.</h1>
+
+            <p class="onboarding-text">
+                WasteLess helps you track your food,
+                reduce waste and share surplus food
+                with people in need.
+            </p>
+
+            <div class="onboarding-features">
+
+                <div class="onboarding-feature">
+                    <span>🍎</span>
+                    <div>
+                        <strong>Track Your Food</strong>
+                        <small>Know what you have and when it expires.</small>
+                    </div>
+                </div>
+
+                <div class="onboarding-feature">
+                    <span>♻️</span>
+                    <div>
+                        <strong>Reduce Food Waste</strong>
+                        <small>Get smart suggestions before food expires.</small>
+                    </div>
+                </div>
+
+                <div class="onboarding-feature">
+                    <span>🤝</span>
+                    <div>
+                        <strong>Share Surplus Food</strong>
+                        <small>Help people around you who need food.</small>
+                    </div>
+                </div>
+
+            </div>
+
+            <a href="/dashboard" class="onboarding-button">
+                Get Started →
+            </a>
+
+            <p class="onboarding-note">
+                A small step for you. A big step for our planet 🌍
+            </p>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Find Food - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="find-food-page">
+
+    <div class="find-food-container">
+
+
+        <!-- HEADER -->
+
+        <div class="find-food-header">
+
+            <a href="/dashboard"
+               class="back-button">
+
+                ← Back to Dashboard
+
+            </a>
+
+            <p class="page-label">
+                WASTELESS
+            </p>
+
+            <h1>
+                Find Food 🔎
+            </h1>
+
+            <p>
+                Discover surplus food shared by your community.
+            </p>
+
+        </div>
+
+
+        <!-- INTRO -->
+
+        <div class="find-food-hero">
+
+            <div class="find-food-hero-icon">
+                🤝
+            </div>
+
+            <div>
+
+                <h2>
+                    Food available near the community
+                </h2>
+
+                <p>
+                    Find usable surplus food and help prevent
+                    unnecessary food waste.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- AVAILABLE FOOD -->
+
+        <div class="find-food-section">
+
+            <p class="page-label">
+                COMMUNITY FOOD
+            </p>
+
+            <h2>
+                Available Food 🍱
+            </h2>
+
+
+            {% if donations %}
+
+                <div class="find-food-grid">
+
+
+                    {% for donation in donations %}
+
+                        <div class="find-food-card">
+
+
+                            <div class="find-food-card-top">
+
+                                <div class="find-food-icon">
+                                    🍱
+                                </div>
+
+
+                                <div>
+
+                                    <h3>
+                                        {{ donation.food_name }}
+                                    </h3>
+
+                                    <span class="find-food-status">
+                                        Available
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="find-food-details">
+
+
+                                <div>
+
+                                    <span>
+                                        Quantity
+                                    </span>
+
+                                    <strong>
+                                        {{ donation.quantity }}
+                                        {{ donation.unit }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Pickup Location
+                                    </span>
+
+                                    <strong>
+                                        📍 {{ donation.pickup_location }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Available Until
+                                    </span>
+
+                                    <strong>
+                                        📅 {{ donation.available_until }}
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                            {% if donation.notes %}
+
+                                <div class="find-food-notes">
+
+                                    📝 {{ donation.notes }}
+
+                                </div>
+
+                            {% endif %}
+
+
+                            <!-- REQUEST FOOD -->
+
+                            <form
+                                method="POST"
+                                action="/request-food/{{ donation.id }}"
+                            >
+
+                                <button
+                                    type="submit"
+                                    class="find-food-request-button"
+                                >
+
+                                    Request Food
+
+                                </button>
+
+                            </form>
+
+
+                        </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="find-food-empty">
+
+                    <div class="find-food-empty-icon">
+                        🍱
+                    </div>
+
+                    <h3>
+                        No food available right now
+                    </h3>
+
+                    <p>
+                        There are currently no surplus food
+                        listings from the community.
+                    </p>
+
+                    <a href="/donate-food"
+                       class="add-food-button">
+
+                        Share Surplus Food
+
+                    </a>
+
+                </div>
+
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div class="find-food-message">
+
+            <div class="find-food-message-icon">
+                🌍
+            </div>
+
+            <div>
+
+                <h3>
+                    Together we can reduce food waste.
+                </h3>
+
+                <p>
+                    Find surplus food, share what you don't
+                    need and help make every meal count.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

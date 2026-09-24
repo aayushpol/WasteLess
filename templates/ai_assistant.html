@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>AI Food Assistant - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="ai-page">
+
+    <div class="ai-container">
+
+
+        <!-- HEADER -->
+
+        <div class="ai-header">
+
+            <a href="/dashboard"
+               class="back-button">
+
+                ← Back to Dashboard
+
+            </a>
+
+            <p class="page-label">
+                WASTELESS
+            </p>
+
+            <h1>
+                AI Food Assistant 🤖
+            </h1>
+
+            <p>
+                Get smart suggestions to use your food
+                before it goes to waste.
+            </p>
+
+        </div>
+
+
+        <!-- AI INTRO -->
+
+        <div class="ai-hero">
+
+            <div class="ai-hero-icon">
+                🤖
+            </div>
+
+            <div>
+
+                <h2>
+                    Your food assistant is ready.
+                </h2>
+
+                <p>
+                    WasteLess analyses your food expiry dates
+                    and suggests what to use first.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOD ANALYSIS -->
+
+        <div class="ai-section">
+
+            <p class="page-label">
+                SMART ANALYSIS
+            </p>
+
+            <h2>
+                What Should You Use First? 🍎
+            </h2>
+
+
+            {% if food_analysis %}
+
+                <div class="ai-food-list">
+
+
+                    {% for item in food_analysis %}
+
+                        <div class="ai-food-card">
+
+
+                            <!-- FOOD ICON -->
+
+                            <div class="ai-food-icon">
+
+                                {% if item.food.category == "fruits" %}
+
+                                    🍎
+
+                                {% elif item.food.category == "vegetables" %}
+
+                                    🥕
+
+                                {% elif item.food.category == "dairy" %}
+
+                                    🥛
+
+                                {% elif item.food.category == "grains" %}
+
+                                    🍚
+
+                                {% elif item.food.category == "meat" %}
+
+                                    🍗
+
+                                {% else %}
+
+                                    🍽️
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <!-- FOOD INFORMATION -->
+
+                            <div class="ai-food-info">
+
+                                <h3>
+                                    {{ item.food.name }}
+                                </h3>
+
+                                <p>
+                                    {{ item.food.quantity }}
+                                    {{ item.food.unit }}
+                                </p>
+
+                                <small>
+                                    Expires:
+                                    {{ item.food.expiry_date }}
+                                </small>
+
+                            </div>
+
+
+                            <!-- AI RESULT -->
+
+                            <div class="ai-suggestion">
+
+                                <span>
+                                    💡 {{ item.priority }}
+                                </span>
+
+
+                                {% if item.days_left < 0 %}
+
+                                    <p>
+                                        This food expired
+                                        {{ item.days_left|abs }}
+                                        day(s) ago.
+                                    </p>
+
+                                {% elif item.days_left == 0 %}
+
+                                    <p>
+                                        This food expires today.
+                                    </p>
+
+                                {% elif item.days_left == 1 %}
+
+                                    <p>
+                                        1 day remaining.
+                                    </p>
+
+                                {% else %}
+
+                                    <p>
+                                        {{ item.days_left }}
+                                        days remaining.
+                                    </p>
+
+                                {% endif %}
+
+
+                                <p>
+                                    {{ item.suggestion }}
+                                </p>
+
+
+                                <!-- RECIPE SUGGESTION -->
+
+                                {% if item.days_left >= 0 %}
+
+                                    <div class="ai-recipe">
+
+                                        <strong>
+                                            🍳 Recipe Idea
+                                        </strong>
+
+                                        <p>
+                                            {{ item.recipe }}
+                                        </p>
+
+                                    </div>
+
+                                {% endif %}
+
+
+                            </div>
+
+
+                        </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="ai-empty">
+
+                    <div class="ai-empty-icon">
+                        🥗
+                    </div>
+
+                    <h3>
+                        No food to analyse
+                    </h3>
+
+                    <p>
+                        Add food to your inventory and the
+                        AI assistant will analyse its expiry date
+                        and suggest recipe ideas.
+                    </p>
+
+                    <a href="/add-food"
+                       class="add-food-button">
+
+                        + Add Food
+
+                    </a>
+
+                </div>
+
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- HOW IT WORKS -->
+
+        <div class="ai-section">
+
+            <p class="page-label">
+                HOW IT WORKS
+            </p>
+
+            <h2>
+                Smart Food Priority 🌱
+            </h2>
+
+
+            <div class="ai-tips-grid">
+
+
+                <div class="ai-tip-card">
+
+                    <div class="ai-tip-icon">
+                        🔴
+                    </div>
+
+                    <h3>
+                        Use Today
+                    </h3>
+
+                    <p>
+                        Food expiring today should be
+                        used as soon as possible.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-tip-card">
+
+                    <div class="ai-tip-icon">
+                        🟠
+                    </div>
+
+                    <h3>
+                        Use Very Soon
+                    </h3>
+
+                    <p>
+                        Food expiring within two days
+                        should be planned into your meals.
+                    </p>
+
+                </div>
+
+
+                <div class="ai-tip-card">
+
+                    <div class="ai-tip-icon">
+                        🟢
+                    </div>
+
+                    <h3>
+                        Still Fresh
+                    </h3>
+
+                    <p>
+                        Food with more time remaining
+                        can be planned for later meals.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- RECIPE FEATURE -->
+
+        <div class="ai-section">
+
+            <p class="page-label">
+                SMART RECIPES
+            </p>
+
+            <h2>
+                Turn Leftover Food Into Meals 🍳
+            </h2>
+
+            <div class="ai-message">
+
+                <div class="ai-message-icon">
+                    👨‍🍳
+                </div>
+
+                <div>
+
+                    <h3>
+                        Reduce waste with simple recipes.
+                    </h3>
+
+                    <p>
+                        WasteLess looks at the food you have
+                        and suggests simple ways to use it
+                        before it expires.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER MESSAGE -->
+
+        <div class="ai-message">
+
+            <div class="ai-message-icon">
+                🌍
+            </div>
+
+            <div>
+
+                <h3>
+                    Small actions create a big impact.
+                </h3>
+
+                <p>
+                    Use food before it expires,
+                    reduce waste and make every meal count.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

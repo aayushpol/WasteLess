@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Food Requests - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="find-food-page">
+
+    <div class="find-food-container">
+
+
+        <!-- HEADER -->
+
+        <div class="find-food-header">
+
+            <a href="/dashboard"
+               class="back-button">
+
+                ← Back to Dashboard
+
+            </a>
+
+            <p class="page-label">
+                WASTELESS
+            </p>
+
+            <h1>
+                Food Requests 🤝
+            </h1>
+
+            <p>
+                See people who have requested your shared food.
+            </p>
+
+        </div>
+
+
+        <!-- REQUESTS -->
+
+        <div class="find-food-section">
+
+            <p class="page-label">
+                COMMUNITY REQUESTS
+            </p>
+
+            <h2>
+                Incoming Requests
+            </h2>
+
+
+            {% if requests %}
+
+
+                <div class="find-food-grid">
+
+
+                    {% for request in requests %}
+
+
+                        <div class="find-food-card">
+
+
+                            <div class="find-food-card-top">
+
+                                <div class="find-food-icon">
+                                    🤝
+                                </div>
+
+                                <div>
+
+                                    <h3>
+                                        {{ request.food_name }}
+                                    </h3>
+
+                                    <span class="find-food-status">
+                                        {{ request.status }}
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="find-food-details">
+
+
+                                <div>
+
+                                    <span>
+                                        Quantity
+                                    </span>
+
+                                    <strong>
+                                        {{ request.quantity }}
+                                        {{ request.unit }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Pickup Location
+                                    </span>
+
+                                    <strong>
+                                        📍 {{ request.pickup_location }}
+                                    </strong>
+
+                                </div>
+
+
+                                <div>
+
+                                    <span>
+                                        Request ID
+                                    </span>
+
+                                    <strong>
+                                        #{{ request.id }}
+                                    </strong>
+
+                                </div>
+
+
+                            </div>
+
+
+                            <div class="find-food-notes">
+
+                                🕐 Request Status:
+                                {{ request.status }}
+
+                            </div>
+
+
+                            <!-- REQUEST ACTIONS -->
+
+                            {% if request.status == "Pending" %}
+
+                                <div class="request-actions">
+
+                                    <form
+                                        method="POST"
+                                        action="/accept-request/{{ request.id }}"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="accept-request-button"
+                                        >
+
+                                            ✓ Accept Request
+
+                                        </button>
+
+                                    </form>
+
+
+                                    <form
+                                        method="POST"
+                                        action="/reject-request/{{ request.id }}"
+                                    >
+
+                                        <button
+                                            type="submit"
+                                            class="reject-request-button"
+                                        >
+
+                                            ✕ Reject Request
+
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
+                            {% else %}
+
+                                <div class="request-completed">
+
+                                    {% if request.status == "Accepted" %}
+
+                                        ✅ Request Accepted
+
+                                    {% else %}
+
+                                        ❌ Request Rejected
+
+                                    {% endif %}
+
+                                </div>
+
+                            {% endif %}
+
+
+                        </div>
+
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <div class="find-food-empty">
+
+                    <div class="find-food-empty-icon">
+                        📭
+                    </div>
+
+                    <h3>
+                        No requests yet
+                    </h3>
+
+                    <p>
+                        When someone requests your donated
+                        food, the request will appear here.
+                    </p>
+
+                </div>
+
+
+            {% endif %}
+
+
+        </div>
+
+
+        <!-- INFORMATION -->
+
+        <div class="find-food-message">
+
+            <div class="find-food-message-icon">
+                🌱
+            </div>
+
+            <div>
+
+                <h3>
+                    Your shared food can help someone.
+                </h3>
+
+                <p>
+                    Check incoming requests and coordinate
+                    the pickup of surplus food.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

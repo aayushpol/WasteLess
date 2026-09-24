@@ -1,0 +1,1596 @@
+/* =========================================================
+   WASTELESS - COMPLETE STYLESHEET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f4f8f5;
+    color: #1f2937;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+}
+
+
+/* =========================================================
+   SPLASH PAGE
+========================================================= */
+
+.splash-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e8f5e9, #f7fbf8);
+    padding: 25px;
+}
+
+.splash-content {
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    background: white;
+    padding: 60px 40px;
+    border-radius: 30px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.splash-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.splash-logo .logo-icon {
+    width: 75px;
+    height: 75px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 22px;
+    font-size: 42px;
+}
+
+.splash-logo h1 {
+    font-size: 42px;
+    color: #2e7d32;
+}
+
+.splash-tagline {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.splash-description {
+    color: #6b7280;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+.splash-button {
+    display: inline-block;
+    padding: 14px 30px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.splash-button:hover {
+    background: #256628;
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   ONBOARDING
+========================================================= */
+
+.onboarding-screen {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    background: #f4f8f5;
+}
+
+.onboarding-card {
+    width: 100%;
+    max-width: 800px;
+    background: white;
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.07);
+    text-align: center;
+}
+
+.onboarding-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8f5e9;
+    border-radius: 22px;
+    font-size: 40px;
+}
+
+.onboarding-text h1 {
+    margin-bottom: 10px;
+}
+
+.onboarding-text p {
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+.onboarding-features {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin: 30px 0;
+}
+
+.onboarding-feature {
+    padding: 22px;
+    background: #f7faf8;
+    border-radius: 18px;
+}
+
+.onboarding-feature-icon {
+    font-size: 30px;
+    margin-bottom: 10px;
+}
+
+.onboarding-feature h3 {
+    margin-bottom: 8px;
+}
+
+.onboarding-feature p {
+    color: #6b7280;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.onboarding-button {
+    display: inline-block;
+    padding: 14px 35px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 12px;
+    font-weight: 700;
+}
+
+.onboarding-note {
+    margin-top: 20px;
+    color: #888;
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard-layout {
+    min-height: 100vh;
+    display: flex;
+    background: #f4f8f5;
+}
+
+.sidebar {
+    width: 245px;
+    min-height: 100vh;
+    background: #ffffff;
+    border-right: 1px solid #e5e7eb;
+    padding: 25px 16px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px 12px 28px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8f5e9;
+    border-radius: 12px;
+    font-size: 24px;
+}
+
+.sidebar-logo h2 {
+    color: #2e7d32;
+    font-size: 23px;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.sidebar-nav a {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 12px 14px;
+    border-radius: 11px;
+    color: #5f6368;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.sidebar-nav a:hover {
+    background: #f1f8f3;
+    color: #2e7d32;
+}
+
+.sidebar-nav a.active {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.sidebar-bottom {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid #eeeeee;
+}
+
+.dashboard-main {
+    flex: 1;
+    margin-left: 245px;
+    padding: 30px 40px;
+    max-width: calc(100% - 245px);
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-header h1 {
+    font-size: 27px;
+    margin-bottom: 6px;
+}
+
+.dashboard-header p {
+    color: #777;
+}
+
+.dashboard-header-icon {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =========================================================
+   DASHBOARD HERO
+========================================================= */
+
+.dashboard-hero {
+    background: linear-gradient(135deg, #2e7d32, #43a047);
+    color: white;
+    border-radius: 23px;
+    padding: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.dashboard-hero h2 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.dashboard-hero p {
+    color: #e7f5e8;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+.dashboard-primary-button {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: white;
+    color: #2e7d32;
+    border-radius: 10px;
+    font-weight: 700;
+}
+
+.dashboard-hero-icon {
+    font-size: 80px;
+}
+
+
+/* =========================================================
+   DASHBOARD STATS
+========================================================= */
+
+.dashboard-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.dashboard-stat-card {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard-stat-icon {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8f5e9;
+    border-radius: 14px;
+    font-size: 25px;
+}
+
+.dashboard-stat-card span {
+    display: block;
+    color: #888;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.dashboard-stat-card strong {
+    font-size: 25px;
+}
+
+
+/* =========================================================
+   DASHBOARD SECTIONS
+========================================================= */
+
+.dashboard-section {
+    margin-bottom: 35px;
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.section-heading h2 {
+    font-size: 21px;
+}
+
+.section-link {
+    color: #2e7d32;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   DASHBOARD FOOD
+========================================================= */
+
+.dashboard-food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.dashboard-food-card {
+    background: white;
+    padding: 18px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.04);
+}
+
+.dashboard-food-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: #f1f8f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 27px;
+}
+
+.dashboard-food-info {
+    flex: 1;
+}
+
+.dashboard-food-info h3 {
+    margin-bottom: 5px;
+}
+
+.dashboard-food-info p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   EXPIRY ALERTS
+========================================================= */
+
+.expiry-alert {
+    padding: 9px 13px;
+    border-radius: 9px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.expiry-alert.expired {
+    background: #ffebee;
+    color: #c62828;
+}
+
+.expiry-alert.today {
+    background: #fff3e0;
+    color: #e65100;
+}
+
+.expiry-alert.soon {
+    background: #fff8e1;
+    color: #f57f17;
+}
+
+.expiry-alert.fresh {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.expiring-alert-box {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    background: #fff8e1;
+    border: 1px solid #ffe082;
+    border-radius: 16px;
+    margin-bottom: 20px;
+}
+
+.expiring-alert-icon {
+    font-size: 30px;
+}
+
+.dashboard-empty {
+    text-align: center;
+    background: white;
+    padding: 45px 20px;
+    border-radius: 18px;
+    color: #777;
+}
+
+
+/* =========================================================
+   QUICK ACTIONS
+========================================================= */
+
+.quick-actions {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.quick-action-card {
+    background: white;
+    padding: 23px;
+    border-radius: 17px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+    transition: 0.2s;
+}
+
+.quick-action-card:hover {
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   GENERAL PAGE
+========================================================= */
+
+.page-container {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #f4f8f5;
+}
+
+.page-content {
+    max-width: 1050px;
+    margin: auto;
+}
+
+.page-header {
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.page-header p {
+    color: #777;
+}
+
+.back-button {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #2e7d32;
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   FORMS
+========================================================= */
+
+.form-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 6px 22px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 7px;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea,
+input[type="text"],
+input[type="number"],
+input[type="date"],
+input[type="datetime-local"],
+select,
+textarea {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d8ded9;
+    border-radius: 10px;
+    outline: none;
+    background: white;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: #4caf50;
+}
+
+textarea {
+    min-height: 110px;
+    resize: vertical;
+}
+
+.form-button,
+button[type="submit"] {
+    border: none;
+    padding: 13px 24px;
+    background: #2e7d32;
+    color: white;
+    border-radius: 10px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   AI FOOD ASSISTANT
+========================================================= */
+
+.ai-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background: #f4f8f5;
+}
+
+.ai-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.ai-header {
+    margin-bottom: 30px;
+}
+
+.ai-hero {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 30px;
+    margin-bottom: 35px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, .06);
+}
+
+.ai-hero-icon {
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 18px;
+    font-size: 38px;
+}
+
+.ai-hero h2 {
+    margin: 0 0 8px;
+}
+
+.ai-hero p {
+    margin: 0;
+    color: #666;
+}
+
+.ai-section {
+    margin-bottom: 35px;
+}
+
+.ai-section h2 {
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+
+.ai-food-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ai-food-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 20px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, .05);
+}
+
+.ai-food-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f8f3;
+    border-radius: 15px;
+    font-size: 28px;
+}
+
+.ai-food-info {
+    min-width: 170px;
+}
+
+.ai-food-info h3 {
+    margin: 0 0 5px;
+}
+
+.ai-food-info p {
+    margin: 0 0 5px;
+    color: #555;
+}
+
+.ai-food-info small {
+    color: #888;
+}
+
+.ai-suggestion {
+    margin-left: auto;
+    max-width: 350px;
+    padding: 14px 18px;
+    background: #f1f8f3;
+    border-radius: 14px;
+}
+
+.ai-suggestion span {
+    font-weight: 600;
+}
+
+.ai-suggestion p {
+    margin: 5px 0 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.ai-recipe {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #dce8df;
+}
+
+.ai-recipe strong {
+    color: #2e7d32;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.ai-recipe p {
+    margin: 0;
+}
+
+.ai-empty {
+    text-align: center;
+    padding: 50px 20px;
+    background: white;
+    border-radius: 20px;
+}
+
+.ai-tips-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+
+/* =========================================================
+   MY IMPACT
+========================================================= */
+
+.impact-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background:
+        radial-gradient(circle at top right, #e8f5e9 0, transparent 30%),
+        #f4f8f5;
+}
+
+.impact-container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+.impact-header {
+    margin-bottom: 28px;
+}
+
+.impact-back {
+    display: inline-block;
+    color: #2e7d32;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.impact-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.impact-title-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 17px;
+    font-size: 30px;
+}
+
+.impact-title h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.impact-title p {
+    color: #777;
+}
+
+.impact-hero {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1b5e20, #43a047);
+    border-radius: 25px;
+    padding: 32px;
+    color: white;
+    margin-bottom: 25px;
+    box-shadow: 0 12px 30px rgba(46, 125, 50, 0.18);
+}
+
+.impact-hero-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.impact-hero-icon {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.16);
+    border-radius: 20px;
+    font-size: 38px;
+}
+
+.impact-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    opacity: 0.8;
+    margin-bottom: 7px;
+}
+
+.impact-hero h2 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.impact-hero p {
+    max-width: 700px;
+    line-height: 1.6;
+    color: #e8f5e9;
+}
+
+.impact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 35px;
+}
+
+.impact-card {
+    background: white;
+    border-radius: 19px;
+    padding: 23px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.045);
+    border: 1px solid #edf1ee;
+}
+
+.impact-card-icon {
+    width: 54px;
+    height: 54px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf7ef;
+    border-radius: 15px;
+    font-size: 27px;
+}
+
+.impact-card-content span {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    color: #8a918c;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.impact-card-content strong {
+    display: block;
+    color: #1f2937;
+    font-size: 26px;
+    margin-bottom: 2px;
+}
+
+.impact-card-content p {
+    color: #8a918c;
+    font-size: 12px;
+}
+
+.impact-section {
+    margin-bottom: 35px;
+}
+
+.impact-small-label {
+    color: #2e7d32;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.impact-section h2 {
+    font-size: 22px;
+    margin-top: 5px;
+}
+
+.impact-summary {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 25px;
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #e8eee9;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+    margin-top: 18px;
+}
+
+.impact-summary-icon {
+    width: 62px;
+    height: 62px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #e8f5e9;
+    border-radius: 18px;
+    font-size: 32px;
+}
+
+.impact-summary-text h3 {
+    margin-bottom: 7px;
+}
+
+.impact-summary-text p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.impact-summary-text strong {
+    color: #2e7d32;
+}
+
+.achievement-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.achievement-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 17px;
+    border: 1px solid #e8eee9;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+.achievement-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f8f3;
+    border-radius: 14px;
+    font-size: 25px;
+}
+
+.achievement-card h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.achievement-card p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.impact-message {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 25px;
+    background: #e8f5e9;
+    border-radius: 20px;
+}
+
+.impact-message-icon {
+    font-size: 35px;
+}
+
+.impact-message h3 {
+    margin-bottom: 6px;
+    color: #245b29;
+}
+
+.impact-message p {
+    color: #4e6652;
+    line-height: 1.5;
+}
+
+.impact-footer {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    padding: 20px 0;
+}
+
+
+/* =========================================================
+   PROFILE PAGE
+========================================================= */
+
+.profile-page {
+    min-height: 100vh;
+    padding: 40px 20px;
+    background:
+        radial-gradient(circle at top right, #e8f5e9 0, transparent 30%),
+        #f4f8f5;
+}
+
+.profile-container {
+    max-width: 1000px;
+    margin: auto;
+}
+
+.profile-header {
+    margin-bottom: 28px;
+}
+
+.profile-back {
+    display: inline-block;
+    color: #2e7d32;
+    font-weight: 700;
+    margin-bottom: 22px;
+}
+
+.profile-title {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.profile-title-icon {
+    width: 58px;
+    height: 58px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #e8f5e9;
+    border-radius: 17px;
+    font-size: 30px;
+}
+
+.profile-title h1 {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.profile-title p {
+    color: #777;
+}
+
+
+/* PROFILE HERO */
+
+.profile-hero {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 30px;
+    background: linear-gradient(135deg, #1b5e20, #43a047);
+    color: white;
+    border-radius: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 12px 30px rgba(46, 125, 50, 0.18);
+}
+
+.profile-avatar-large {
+    width: 85px;
+    height: 85px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.17);
+    border-radius: 50%;
+    font-size: 45px;
+}
+
+.profile-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    opacity: 0.8;
+    margin-bottom: 7px;
+}
+
+.profile-hero h2 {
+    font-size: 30px;
+    margin-bottom: 7px;
+}
+
+.profile-hero p {
+    color: #e8f5e9;
+}
+
+
+/* PROFILE SECTIONS */
+
+.profile-section {
+    margin-bottom: 32px;
+}
+
+.profile-small-label {
+    color: #2e7d32;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.3px;
+}
+
+.profile-section h2 {
+    font-size: 22px;
+    margin-top: 5px;
+    margin-bottom: 18px;
+}
+
+
+/* PROFILE INFORMATION */
+
+.profile-info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.profile-info-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 21px;
+    background: white;
+    border-radius: 17px;
+    border: 1px solid #e8eee9;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+.profile-info-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #edf7ef;
+    border-radius: 14px;
+    font-size: 25px;
+}
+
+.profile-info-card span {
+    display: block;
+    color: #8a918c;
+    font-size: 12px;
+    margin-bottom: 5px;
+}
+
+.profile-info-card strong {
+    display: block;
+    font-size: 16px;
+}
+
+
+/* PROFILE PREFERENCES */
+
+.profile-preference-list {
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+.profile-preference {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 17px;
+    border: 1px solid #e8eee9;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+.profile-preference-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-preference-icon {
+    width: 50px;
+    height: 50px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f8f3;
+    border-radius: 14px;
+    font-size: 25px;
+}
+
+.profile-preference h3 {
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.profile-preference p {
+    color: #777;
+    font-size: 13px;
+}
+
+.profile-status {
+    padding: 7px 12px;
+    background: #e8f5e9;
+    color: #2e7d32;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+}
+
+
+/* PROFILE ABOUT */
+
+.profile-about {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 25px;
+    background: #e8f5e9;
+    border-radius: 20px;
+    margin-top: 10px;
+}
+
+.profile-about-icon {
+    width: 55px;
+    height: 55px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: white;
+    border-radius: 16px;
+    font-size: 28px;
+}
+
+.profile-about h3 {
+    color: #245b29;
+    margin-bottom: 6px;
+}
+
+.profile-about p {
+    color: #4e6652;
+    line-height: 1.6;
+}
+
+.profile-footer {
+    text-align: center;
+    color: #999;
+    font-size: 13px;
+    padding: 25px 0 5px;
+}
+
+
+/* =========================================================
+   DONATION / REQUEST / FIND FOOD
+========================================================= */
+
+.donation-list,
+.request-list,
+.find-food-list {
+    display: grid;
+    gap: 15px;
+}
+
+.donation-card,
+.request-card,
+.find-food-card {
+    background: white;
+    padding: 22px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 950px) {
+
+    .sidebar {
+        width: 210px;
+    }
+
+    .dashboard-main {
+        margin-left: 210px;
+        max-width: calc(100% - 210px);
+        padding: 25px;
+    }
+
+    .dashboard-stats,
+    .impact-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .ai-tips-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 700px) {
+
+    .dashboard-layout {
+        display: block;
+    }
+
+    .sidebar {
+        position: static;
+        width: 100%;
+        min-height: auto;
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+    }
+
+    .sidebar-nav {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .sidebar-nav a {
+        font-size: 12px;
+    }
+
+    .sidebar-bottom {
+        display: none;
+    }
+
+    .dashboard-main {
+        margin-left: 0;
+        max-width: 100%;
+        padding: 20px 15px;
+    }
+
+    .dashboard-hero-icon {
+        display: none;
+    }
+
+    .dashboard-stats,
+    .impact-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-food-card {
+        flex-wrap: wrap;
+    }
+
+    .quick-actions {
+        grid-template-columns: 1fr;
+    }
+
+    .onboarding-features {
+        grid-template-columns: 1fr;
+    }
+
+    .splash-content {
+        padding: 40px 25px;
+    }
+
+    .impact-page,
+    .profile-page {
+        padding: 25px 15px;
+    }
+
+    .impact-title h1,
+    .profile-title h1 {
+        font-size: 25px;
+    }
+
+    .impact-hero {
+        padding: 25px;
+    }
+
+    .impact-hero-content {
+        align-items: flex-start;
+    }
+
+    .impact-summary {
+        align-items: flex-start;
+    }
+
+    .achievement-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .impact-message {
+        align-items: flex-start;
+    }
+
+    .ai-page {
+        padding: 25px 15px;
+    }
+
+    .ai-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .ai-food-card {
+        flex-wrap: wrap;
+    }
+
+    .ai-suggestion {
+        width: 100%;
+        max-width: none;
+        margin-left: 0;
+    }
+
+    .profile-info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-hero {
+        padding: 25px;
+    }
+
+    .profile-preference {
+        align-items: flex-start;
+    }
+
+    .profile-preference-left {
+        align-items: flex-start;
+    }
+
+    .profile-about {
+        align-items: flex-start;
+    }
+}
+
+
+@media (max-width: 450px) {
+
+    .sidebar-nav {
+        grid-template-columns: 1fr;
+    }
+
+    .dashboard-main {
+        padding: 15px 12px;
+    }
+
+    .impact-card {
+        padding: 18px;
+    }
+
+    .impact-card-content strong {
+        font-size: 23px;
+    }
+
+    .impact-summary {
+        flex-direction: column;
+    }
+
+    .achievement-card {
+        align-items: flex-start;
+    }
+
+    .profile-title {
+        align-items: flex-start;
+    }
+
+    .profile-title-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 25px;
+    }
+
+    .profile-title h1 {
+        font-size: 22px;
+    }
+
+    .profile-hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .profile-avatar-large {
+        width: 75px;
+        height: 75px;
+        font-size: 38px;
+    }
+
+    .profile-preference {
+        flex-direction: column;
+    }
+
+    .profile-status {
+        align-self: flex-start;
+        margin-left: 65px;
+    }
+
+    .profile-about {
+        flex-direction: column;
+    }
+}

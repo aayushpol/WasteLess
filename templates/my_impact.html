@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Impact - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+<div class="impact-page">
+
+    <div class="impact-container">
+
+        <!-- HEADER -->
+
+        <div class="impact-header">
+
+            <a href="/dashboard"
+               class="impact-back">
+                ← Back to Dashboard
+            </a>
+
+            <div class="impact-title">
+
+                <div class="impact-title-icon">
+                    🌱
+                </div>
+
+                <div>
+                    <h1>My Impact</h1>
+
+                    <p>
+                        See how your actions are helping reduce food waste.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMPACT HERO -->
+
+        <div class="impact-hero">
+
+            <div class="impact-hero-content">
+
+                <div class="impact-hero-icon">
+                    🌍
+                </div>
+
+                <div>
+
+                    <span class="impact-label">
+                        YOUR WASTELESS JOURNEY
+                    </span>
+
+                    <h2>
+                        {{ impact_level }}
+                    </h2>
+
+                    <p>
+                        Every food item you track and every donation
+                        you make contributes to a more sustainable future.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN IMPACT CARDS -->
+
+        <div class="impact-grid">
+
+
+            <!-- FOOD TRACKED -->
+
+            <div class="impact-card">
+
+                <div class="impact-card-icon">
+                    🍎
+                </div>
+
+                <div class="impact-card-content">
+
+                    <span>
+                        FOOD TRACKED
+                    </span>
+
+                    <strong>
+                        {{ food_count }}
+                    </strong>
+
+                    <p>
+                        food items
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- TOTAL FOOD -->
+
+            <div class="impact-card">
+
+                <div class="impact-card-icon">
+                    📦
+                </div>
+
+                <div class="impact-card-content">
+
+                    <span>
+                        FOOD TRACKED
+                    </span>
+
+                    <strong>
+                        {{ total_food_tracked }}
+                    </strong>
+
+                    <p>
+                        kg of food
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- DONATIONS -->
+
+            <div class="impact-card">
+
+                <div class="impact-card-icon">
+                    🤝
+                </div>
+
+                <div class="impact-card-content">
+
+                    <span>
+                        DONATIONS
+                    </span>
+
+                    <strong>
+                        {{ donation_count }}
+                    </strong>
+
+                    <p>
+                        donations made
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- FOOD DONATED -->
+
+            <div class="impact-card">
+
+                <div class="impact-card-icon">
+                    ⚖️
+                </div>
+
+                <div class="impact-card-content">
+
+                    <span>
+                        FOOD DONATED
+                    </span>
+
+                    <strong>
+                        {{ total_donated }}
+                    </strong>
+
+                    <p>
+                        kg donated
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- CO2 -->
+
+            <div class="impact-card">
+
+                <div class="impact-card-icon">
+                    🌱
+                </div>
+
+                <div class="impact-card-content">
+
+                    <span>
+                        CO₂ SAVED
+                    </span>
+
+                    <strong>
+                        {{ co2_saved }}
+                    </strong>
+
+                    <p>
+                        kg CO₂e estimated
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <!-- MONEY -->
+
+            <div class="impact-card">
+
+                <div class="impact-card-icon">
+                    💰
+                </div>
+
+                <div class="impact-card-content">
+
+                    <span>
+                        VALUE SAVED
+                    </span>
+
+                    <strong>
+                        ₹{{ money_saved }}
+                    </strong>
+
+                    <p>
+                        estimated value
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- IMPACT SUMMARY -->
+
+        <div class="impact-section">
+
+            <div class="impact-section-title">
+
+                <div>
+                    <span class="impact-small-label">
+                        YOUR PROGRESS
+                    </span>
+
+                    <h2>
+                        WasteLess Impact Summary
+                    </h2>
+                </div>
+
+            </div>
+
+
+            <div class="impact-summary">
+
+                <div class="impact-summary-icon">
+                    🌿
+                </div>
+
+                <div class="impact-summary-text">
+
+                    <h3>
+                        Keep making an impact
+                    </h3>
+
+                    <p>
+                        You have tracked
+                        <strong>{{ total_food_tracked }} kg</strong>
+                        of food and donated
+                        <strong>{{ total_donated }} kg</strong>.
+                        Continue using WasteLess to monitor expiry
+                        dates, reduce waste and share surplus food.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACHIEVEMENTS -->
+
+        <div class="impact-section">
+
+            <span class="impact-small-label">
+                ACHIEVEMENTS
+            </span>
+
+            <h2>
+                Your WasteLess Milestones
+            </h2>
+
+
+            <div class="achievement-grid">
+
+
+                <!-- TRACKER -->
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        🍎
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Food Tracker
+                        </h3>
+
+                        <p>
+                            You have tracked
+                            {{ food_count }}
+                            food items.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DONOR -->
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        🤝
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Food Donor
+                        </h3>
+
+                        <p>
+                            You have made
+                            {{ donation_count }}
+                            donation(s).
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ENVIRONMENT -->
+
+                <div class="achievement-card">
+
+                    <div class="achievement-icon">
+                        🌍
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Planet Helper
+                        </h3>
+
+                        <p>
+                            Your estimated impact is
+                            {{ co2_saved }}
+                            kg CO₂e.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+        <!-- MOTIVATION -->
+
+        <div class="impact-message">
+
+            <div class="impact-message-icon">
+                💚
+            </div>
+
+            <div>
+
+                <h3>
+                    Small actions create a bigger impact.
+                </h3>
+
+                <p>
+                    Track your food, use it before expiry,
+                    donate what you don't need and help prevent
+                    unnecessary food waste.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="impact-footer">
+
+            <p>
+                WasteLess • Track. Save. Share. 🌱
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

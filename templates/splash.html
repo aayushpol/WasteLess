@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="splash-screen">
+
+        <div class="splash-content">
+
+            <div class="splash-logo">
+                🌱
+            </div>
+
+            <h1>WasteLess</h1>
+
+            <p class="splash-tagline">
+                Smart Food Waste Reducer
+            </p>
+
+            <p class="splash-description">
+                Track food. Reduce waste. Help people.
+            </p>
+
+            <a href="/onboarding" class="splash-button">
+    Get Started →
+</a>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
+
+.splash-button {
+    display: inline-block;
+    padding: 14px 32px;
+
+    background: #318b43;
+    color: white;
+
+    text-decoration: none;
+    border-radius: 30px;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    transition: 0.2s;
+}
+
+.splash-button:hover {
+    background: #267537;
+    transform: translateY(-2px);
+}

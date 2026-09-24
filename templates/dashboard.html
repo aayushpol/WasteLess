@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+
+<body>
+
+<div class="dashboard-layout">
+
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <div class="logo-icon">
+                🌱
+            </div>
+
+            <div>
+                <h2>WasteLess</h2>
+                <small>Smart Food Waste Reducer</small>
+            </div>
+
+        </div>
+
+
+        <nav class="sidebar-nav">
+
+            <a href="/dashboard"
+               class="active">
+
+                🏠
+                <span>Dashboard</span>
+
+            </a>
+
+
+            <a href="/my-food">
+
+                🍎
+                <span>My Food</span>
+
+            </a>
+
+
+            <a href="/add-food">
+
+                ➕
+                <span>Add Food</span>
+
+            </a>
+
+
+            <a href="/donate-food">
+
+                🤝
+                <span>Donate Food</span>
+
+            </a>
+
+
+            <a href="/find-food">
+
+                🔎
+                <span>Find Food</span>
+
+            </a>
+
+
+            <a href="/food-requests">
+
+                📬
+                <span>Food Requests</span>
+
+            </a>
+
+
+            <a href="/my-impact">
+
+                🌍
+                <span>My Impact</span>
+
+            </a>
+
+
+            <a href="/ai-assistant">
+
+                🤖
+                <span>AI Assistant</span>
+
+            </a>
+
+
+            <a href="/profile">
+
+                👤
+                <span>Profile</span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="sidebar-bottom">
+
+            <p>
+                🌱 Every meal saved matters.
+            </p>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="dashboard-main">
+
+
+        <!-- HEADER -->
+
+        <div class="dashboard-header">
+
+            <div>
+
+                <p class="page-label">
+                    WELCOME BACK
+                </p>
+
+                <h1>
+                    Good Morning, Aayush 👋
+                </h1>
+
+                <p>
+                    Let's reduce food waste today.
+                </p>
+
+            </div>
+
+
+            <div class="dashboard-header-icon">
+
+                🌱
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             QUICK ACTION
+        ========================== -->
+
+        <div class="dashboard-hero">
+
+            <div>
+
+                <p class="page-label">
+                    WASTELESS
+                </p>
+
+                <h2>
+                    Save food. Save money.
+                    Help the planet. 🌍
+                </h2>
+
+                <p>
+                    Track your food, manage expiry dates
+                    and share surplus food with others.
+                </p>
+
+                <a href="/add-food"
+                   class="dashboard-primary-button">
+
+                    + Add Food
+
+                </a>
+
+            </div>
+
+
+            <div class="dashboard-hero-icon">
+
+                🥗
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             SUMMARY CARDS
+        ========================== -->
+
+        <div class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="page-label">
+                        MY SUMMARY
+                    </p>
+
+                    <h2>
+                        Your Food Overview
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-stats">
+
+
+                <!-- FOOD COUNT -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon">
+                        🍎
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Food Items
+                        </span>
+
+                        <strong>
+                            {{ food_count }}
+                        </strong>
+
+                        <small>
+                            Currently tracked
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- FOOD SAVED -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon">
+                        🌱
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Food Tracked
+                        </span>
+
+                        <strong>
+                            {{ food_saved }} kg
+                        </strong>
+
+                        <small>
+                            Total quantity
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DONATIONS -->
+
+                <div class="dashboard-stat-card">
+
+                    <div class="dashboard-stat-icon">
+                        🤝
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Donations
+                        </span>
+
+                        <strong>
+                            {{ donation_count }}
+                        </strong>
+
+                        <small>
+                            Food shared
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             EXPIRY ALERTS
+        ========================== -->
+
+        <div class="dashboard-section">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="page-label">
+                        EXPIRY ALERTS
+                    </p>
+
+                    <h2>
+                        Check Your Food ⏰
+                    </h2>
+
+                </div>
+
+
+                <a href="/my-food"
+                   class="section-link">
+
+                    View All →
+
+                </a>
+
+            </div>
+
+
+
+            {% if foods %}
+
+                <div class="dashboard-food-list">
+
+
+                    {% for food in foods %}
+
+                        <div class="dashboard-food-card">
+
+
+                            <!-- FOOD ICON -->
+
+                            <div class="dashboard-food-icon">
+
+                                {% if food.category == "fruits" %}
+
+                                    🍎
+
+                                {% elif food.category == "vegetables" %}
+
+                                    🥕
+
+                                {% elif food.category == "dairy" %}
+
+                                    🥛
+
+                                {% elif food.category == "grains" %}
+
+                                    🍚
+
+                                {% elif food.category == "meat" %}
+
+                                    🍗
+
+                                {% else %}
+
+                                    🍽️
+
+                                {% endif %}
+
+                            </div>
+
+
+
+                            <!-- FOOD INFORMATION -->
+
+                            <div class="dashboard-food-info">
+
+                                <h3>
+                                    {{ food.name }}
+                                </h3>
+
+                                <p>
+                                    {{ food.quantity }}
+                                    {{ food.unit }}
+                                </p>
+
+                                <small>
+                                    Expires:
+                                    {{ food.expiry_date }}
+                                </small>
+
+                            </div>
+
+
+
+                            <!-- EXPIRY STATUS -->
+
+                            <div class="expiry-alert
+                                {{ food.expiry_class }}">
+
+
+                                {% if food.expiry_class == "expired" %}
+
+                                    <span>
+                                        🔴
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Expired
+                                        </strong>
+
+                                        <small>
+                                            {{ food.days_left|abs }}
+                                            day(s) ago
+                                        </small>
+
+                                    </div>
+
+
+                                {% elif food.expiry_class == "today" %}
+
+                                    <span>
+                                        🟠
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Expires Today
+                                        </strong>
+
+                                        <small>
+                                            Use it today
+                                        </small>
+
+                                    </div>
+
+
+                                {% elif food.expiry_class == "soon" %}
+
+                                    <span>
+                                        🟡
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Expires Soon
+                                        </strong>
+
+                                        <small>
+                                            {{ food.days_left }}
+                                            day(s) left
+                                        </small>
+
+                                    </div>
+
+
+                                {% else %}
+
+                                    <span>
+                                        🟢
+                                    </span>
+
+                                    <div>
+
+                                        <strong>
+                                            Fresh
+                                        </strong>
+
+                                        <small>
+                                            {{ food.days_left }}
+                                            day(s) left
+                                        </small>
+
+                                    </div>
+
+                                {% endif %}
+
+
+                            </div>
+
+
+                        </div>
+
+                    {% endfor %}
+
+
+                </div>
+
+
+            {% else %}
+
+
+                <!-- EMPTY STATE -->
+
+                <div class="dashboard-empty">
+
+                    <div>
+                        🥗
+                    </div>
+
+                    <h3>
+                        No food tracked yet
+                    </h3>
+
+                    <p>
+                        Add your first food item to start
+                        tracking expiry dates.
+                    </p>
+
+                    <a href="/add-food"
+                       class="dashboard-primary-button">
+
+                        + Add Your First Food
+
+                    </a>
+
+                </div>
+
+
+            {% endif %}
+
+        </div>
+
+
+
+        <!-- =========================
+             EXPIRING SOON SECTION
+        ========================== -->
+
+        {% if expiring_foods %}
+
+            <div class="dashboard-section">
+
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <p class="page-label">
+                            NEEDS ATTENTION
+                        </p>
+
+                        <h2>
+                            Use These Soon ⚠️
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="expiring-alert-box">
+
+                    <div class="expiring-alert-icon">
+                        ⏰
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            {{ expiring_foods|length }}
+                            food item(s) need attention
+                        </h3>
+
+                        <p>
+                            These items are approaching
+                            their expiry date. Try using
+                            them soon to reduce waste.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        {% endif %}
+
+
+
+        <!-- =========================
+             QUICK ACTIONS
+        ========================== -->
+
+        <div class="dashboard-section">
+
+            <div class="section-heading">
+
+                <div>
+
+                    <p class="page-label">
+                        QUICK ACTIONS
+                    </p>
+
+                    <h2>
+                        What would you like to do?
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+
+                <a href="/add-food"
+                   class="quick-action-card">
+
+                    <div>
+                        ➕
+                    </div>
+
+                    <h3>
+                        Add Food
+                    </h3>
+
+                    <p>
+                        Track a new food item.
+                    </p>
+
+                </a>
+
+
+                <a href="/ai-assistant"
+                   class="quick-action-card">
+
+                    <div>
+                        🤖
+                    </div>
+
+                    <h3>
+                        AI Assistant
+                    </h3>
+
+                    <p>
+                        Get expiry and recipe suggestions.
+                    </p>
+
+                </a>
+
+
+                <a href="/donate-food"
+                   class="quick-action-card">
+
+                    <div>
+                        🤝
+                    </div>
+
+                    <h3>
+                        Donate Food
+                    </h3>
+
+                    <p>
+                        Share surplus food.
+                    </p>
+
+                </a>
+
+
+                <a href="/my-impact"
+                   class="quick-action-card">
+
+                    <div>
+                        🌍
+                    </div>
+
+                    <h3>
+                        My Impact
+                    </h3>
+
+                    <p>
+                        See your contribution.
+                    </p>
+
+                </a>
+
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================
+             FOOTER MESSAGE
+        ========================== -->
+
+        <div class="dashboard-footer">
+
+            <div>
+                🌍
+            </div>
+
+            <div>
+
+                <h3>
+                    Small actions create a big impact.
+                </h3>
+
+                <p>
+                    Every food item you save helps reduce
+                    waste and protect our planet.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+</body>
+
+</html>

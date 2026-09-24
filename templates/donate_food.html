@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Donate Food - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .donate-page {
+            min-height: 100vh;
+            background: #f4f8f5;
+            padding: 30px 20px 60px;
+        }
+
+        .donate-container {
+            max-width: 950px;
+            margin: auto;
+        }
+
+        .donate-header {
+            margin-bottom: 28px;
+        }
+
+        .back-button {
+            display: inline-block;
+            margin-bottom: 22px;
+            color: #15803d;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .back-button:hover {
+            text-decoration: underline;
+        }
+
+        .page-label {
+            margin: 0 0 7px;
+            color: #16a34a;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+        }
+
+        .donate-header h1 {
+            margin: 0;
+            color: #173b2a;
+            font-size: 34px;
+        }
+
+        .donate-header > p:last-child {
+            margin-top: 8px;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .donation-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        .donation-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding-bottom: 24px;
+            margin-bottom: 25px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .donation-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 17px;
+            background: #dcfce7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 29px;
+            flex-shrink: 0;
+        }
+
+        .donation-title h2 {
+            margin: 0;
+            color: #173b2a;
+            font-size: 20px;
+        }
+
+        .donation-title p {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .form-group label span {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 13px 14px;
+            background: #fff;
+            color: #1e293b;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.10);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 105px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px;
+        }
+
+        .field-tip {
+            margin: 6px 0 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .date-warning {
+            display: none;
+            margin-top: 8px;
+            padding: 9px 11px;
+            border-radius: 9px;
+            background: #fef2f2;
+            color: #b91c1c;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .donate-button {
+            width: 100%;
+            margin-top: 5px;
+            padding: 14px 20px;
+            border: none;
+            border-radius: 12px;
+            background: #16a34a;
+            color: white;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 7px 16px rgba(22, 163, 74, 0.20);
+            transition: 0.2s ease;
+        }
+
+        .donate-button:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+
+        .community-section {
+            margin-top: 38px;
+        }
+
+        .available-header {
+            margin-bottom: 18px;
+        }
+
+        .available-header h2 {
+            margin: 0;
+            color: #173b2a;
+            font-size: 25px;
+        }
+
+        .available-header > div > p:last-child {
+            margin: 6px 0 0;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .donation-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .available-donation-card {
+            display: flex;
+            align-items: center;
+            gap: 17px;
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 19px;
+            box-shadow: 0 5px 18px rgba(15, 23, 42, 0.04);
+        }
+
+        .available-donation-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: #f0fdf4;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 25px;
+            flex-shrink: 0;
+        }
+
+        .available-donation-content {
+            flex: 1;
+        }
+
+        .available-donation-content h3 {
+            margin: 0 0 5px;
+            color: #173b2a;
+            font-size: 17px;
+        }
+
+        .available-donation-content p {
+            margin: 4px 0;
+            color: #64748b;
+            font-size: 13px;
+        }
+
+        .available-donation-content .donation-quantity {
+            color: #16a34a;
+            font-weight: 800;
+        }
+
+        .available-donation-content .donation-notes {
+            color: #475569;
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 7px 9px;
+            margin-top: 8px;
+        }
+
+        .donation-status span {
+            display: inline-block;
+            padding: 7px 11px;
+            border-radius: 999px;
+            background: #dcfce7;
+            color: #166534;
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .no-donations {
+            background: white;
+            border: 1px dashed #cbd5e1;
+            border-radius: 18px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .no-donations-icon {
+            font-size: 42px;
+            margin-bottom: 8px;
+        }
+
+        .no-donations h3 {
+            margin: 0;
+            color: #334155;
+        }
+
+        .no-donations p {
+            color: #64748b;
+            font-size: 14px;
+            margin-bottom: 0;
+        }
+
+        .donation-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 25px;
+            padding: 19px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 17px;
+        }
+
+        .donation-info-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 13px;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .donation-info h3 {
+            margin: 0 0 4px;
+            color: #166534;
+            font-size: 15px;
+        }
+
+        .donation-info p {
+            margin: 0;
+            color: #4b6355;
+            font-size: 13px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 700px) {
+
+            .donate-page {
+                padding: 20px 12px 45px;
+            }
+
+            .donation-card {
+                padding: 20px;
+                border-radius: 18px;
+            }
+
+            .donate-header h1 {
+                font-size: 28px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .available-donation-card {
+                align-items: flex-start;
+                flex-wrap: wrap;
+            }
+
+            .donation-status {
+                width: 100%;
+                margin-left: 69px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="donate-page">
+
+    <div class="donate-container">
+
+        <!-- HEADER -->
+        <div class="donate-header">
+
+            <a href="/dashboard" class="back-button">
+                ← Back to Dashboard
+            </a>
+
+            <p class="page-label">WASTELESS</p>
+
+            <h1>Donate Food 🤝</h1>
+
+            <p>
+                Share surplus food with people who need it.
+            </p>
+
+        </div>
+
+
+        <!-- DONATION FORM -->
+        <div class="donation-card">
+
+            <div class="donation-title">
+
+                <div class="donation-icon">
+                    🤝
+                </div>
+
+                <div>
+                    <h2>List Food for Donation</h2>
+
+                    <p>
+                        Provide details about the food you would like to donate.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form method="POST"
+                  action="/donate-food"
+                  id="donationForm">
+
+                <!-- FOOD NAME -->
+                <div class="form-group">
+
+                    <label for="donation-food">
+                        Food Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="donation-food"
+                        name="food_name"
+                        placeholder="e.g. Cooked Rice, Bread, Fruits"
+                        required
+                        autocomplete="off"
+                    >
+
+                    <p class="field-tip">
+                        Enter the food you want to share with the community.
+                    </p>
+
+                </div>
+
+
+                <!-- QUANTITY + UNIT -->
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="donation-quantity">
+                            Quantity
+                        </label>
+
+                        <input
+                            type="number"
+                            id="donation-quantity"
+                            name="quantity"
+                            placeholder="e.g. 5"
+                            min="0.01"
+                            step="0.01"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="donation-unit">
+                            Unit
+                        </label>
+
+                        <select
+                            id="donation-unit"
+                            name="unit"
+                            required
+                        >
+
+                            <option value="kg">
+                                Kilogram (kg)
+                            </option>
+
+                            <option value="g">
+                                Gram (g)
+                            </option>
+
+                            <option value="litre">
+                                Litre
+                            </option>
+
+                            <option value="pieces">
+                                Pieces
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- LOCATION -->
+                <div class="form-group">
+
+                    <label for="pickup-location">
+                        Pickup Location
+                    </label>
+
+                    <input
+                        type="text"
+                        id="pickup-location"
+                        name="pickup_location"
+                        placeholder="Enter pickup location"
+                        required
+                    >
+
+                    <p class="field-tip">
+                        Tell the recipient where the food can be collected.
+                    </p>
+
+                </div>
+
+
+                <!-- AVAILABLE UNTIL -->
+                <div class="form-group">
+
+                    <label for="donation-date">
+                        Available Until
+                    </label>
+
+                    <input
+                        type="date"
+                        id="donation-date"
+                        name="available_until"
+                        required
+                    >
+
+                    <div id="dateWarning" class="date-warning">
+                        ⚠️ Please select today or a future date.
+                    </div>
+
+                </div>
+
+
+                <!-- NOTES -->
+                <div class="form-group">
+
+                    <label for="donation-notes">
+
+                        Additional Information
+
+                        <span>(Optional)</span>
+
+                    </label>
+
+                    <textarea
+                        id="donation-notes"
+                        name="notes"
+                        rows="3"
+                        placeholder="Mention anything important about the food..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="donate-button"
+                    id="donateButton"
+                >
+                    🤝 List Food for Donation
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- AVAILABLE DONATIONS -->
+        <div class="community-section">
+
+            <div class="available-header">
+
+                <div>
+
+                    <p class="page-label">
+                        COMMUNITY
+                    </p>
+
+                    <h2>
+                        Available Food 🤝
+                    </h2>
+
+                    <p>
+                        Food currently shared by the community.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            {% if donations %}
+
+                <div class="donation-list">
+
+                    {% for donation in donations %}
+
+                        <div class="available-donation-card">
+
+                            <div class="available-donation-icon">
+                                🍱
+                            </div>
+
+
+                            <div class="available-donation-content">
+
+                                <h3>
+                                    {{ donation.food_name }}
+                                </h3>
+
+                                <p class="donation-quantity">
+                                    {{ donation.quantity }}
+                                    {{ donation.unit }}
+                                </p>
+
+                                <p>
+                                    📍 {{ donation.pickup_location }}
+                                </p>
+
+                                <p>
+                                    📅 Available until:
+                                    {{ donation.available_until }}
+                                </p>
+
+                                {% if donation.notes %}
+
+                                    <p class="donation-notes">
+                                        📝 {{ donation.notes }}
+                                    </p>
+
+                                {% endif %}
+
+                            </div>
+
+
+                            <div class="donation-status">
+
+                                <span>
+                                    Available
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                    {% endfor %}
+
+                </div>
+
+            {% else %}
+
+                <div class="no-donations">
+
+                    <div class="no-donations-icon">
+                        🍱
+                    </div>
+
+                    <h3>
+                        No donations yet
+                    </h3>
+
+                    <p>
+                        Be the first person to share surplus
+                        food with the community.
+                    </p>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- INFORMATION -->
+        <div class="donation-info">
+
+            <div class="donation-info-icon">
+                🌍
+            </div>
+
+            <div>
+
+                <h3>
+                    Your surplus food can make a difference.
+                </h3>
+
+                <p>
+                    Instead of throwing usable food away,
+                    share it with someone who can benefit
+                    from it.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const donationForm = document.getElementById("donationForm");
+    const availableUntil = document.getElementById("donation-date");
+    const dateWarning = document.getElementById("dateWarning");
+    const donateButton = document.getElementById("donateButton");
+
+    // Today's date
+    const today = new Date().toISOString().split("T")[0];
+
+    // Prevent selecting a past date
+    availableUntil.min = today;
+
+    // Form validation
+    donationForm.addEventListener("submit", function(event) {
+
+        if (availableUntil.value < today) {
+
+            event.preventDefault();
+
+            dateWarning.style.display = "block";
+
+            alert(
+                "Please select today or a future date for the donation."
+            );
+
+            return;
+        }
+
+        dateWarning.style.display = "none";
+
+        donateButton.innerHTML = "⏳ Listing Food...";
+
+        donateButton.disabled = true;
+    });
+
+    availableUntil.addEventListener("change", function() {
+
+        if (availableUntil.value < today) {
+
+            dateWarning.style.display = "block";
+
+        } else {
+
+            dateWarning.style.display = "none";
+
+        }
+
+    });
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Food - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+        .add-food-page {
+            min-height: 100vh;
+            background: #f4f8f5;
+            padding: 30px 20px 50px;
+        }
+
+        .add-food-container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .add-food-top {
+            margin-bottom: 25px;
+        }
+
+        .add-food-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            text-decoration: none;
+            color: #15803d;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .add-food-back:hover {
+            text-decoration: underline;
+        }
+
+        .add-food-heading {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 8px;
+        }
+
+        .add-food-heading-icon {
+            width: 58px;
+            height: 58px;
+            border-radius: 17px;
+            background: #dcfce7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .add-food-heading h1 {
+            margin: 0;
+            color: #173b2a;
+            font-size: 32px;
+        }
+
+        .add-food-heading p {
+            margin: 5px 0 0;
+            color: #64748b;
+            font-size: 15px;
+        }
+
+        .add-food-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 22px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+        }
+
+        .form-section-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .form-section-title-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 12px;
+            background: #ecfdf5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+        }
+
+        .form-section-title h2 {
+            margin: 0;
+            font-size: 19px;
+            color: #173b2a;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #1e293b;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .required {
+            color: #dc2626;
+        }
+
+        .optional {
+            color: #94a3b8;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #cbd5e1;
+            border-radius: 12px;
+            padding: 13px 14px;
+            background: #ffffff;
+            color: #1e293b;
+            font-size: 15px;
+            outline: none;
+            transition: 0.2s ease;
+        }
+
+        .form-control:focus {
+            border-color: #22c55e;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.10);
+        }
+
+        .form-control::placeholder {
+            color: #94a3b8;
+        }
+
+        select.form-control {
+            cursor: pointer;
+        }
+
+        textarea.form-control {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon .form-control {
+            padding-left: 44px;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            pointer-events: none;
+        }
+
+        .helper-text {
+            margin: 6px 0 0;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        .date-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 7px;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .expiry-warning {
+            display: none;
+            margin-top: 8px;
+            padding: 9px 11px;
+            border-radius: 9px;
+            background: #fef2f2;
+            color: #b91c1c;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .form-divider {
+            height: 1px;
+            background: #e2e8f0;
+            margin: 8px 0 25px;
+        }
+
+        .form-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .cancel-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 13px 20px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: white;
+            color: #475569;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .cancel-button:hover {
+            background: #f8fafc;
+        }
+
+        .save-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 13px 25px;
+            border: none;
+            border-radius: 12px;
+            background: #16a34a;
+            color: white;
+            font-size: 15px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 15px rgba(22, 163, 74, 0.20);
+            transition: 0.2s ease;
+        }
+
+        .save-button:hover {
+            background: #15803d;
+            transform: translateY(-1px);
+        }
+
+        .tips-box {
+            margin-top: 20px;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-radius: 16px;
+            padding: 17px 18px;
+        }
+
+        .tips-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #166534;
+            font-weight: 800;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .tips-box p {
+            margin: 0;
+            color: #4b6355;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .required-note {
+            margin-top: 18px;
+            color: #94a3b8;
+            font-size: 12px;
+        }
+
+        @media (max-width: 700px) {
+            .add-food-page {
+                padding: 20px 12px 40px;
+            }
+
+            .add-food-card {
+                padding: 20px;
+                border-radius: 18px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .form-group.full-width {
+                grid-column: auto;
+            }
+
+            .add-food-heading h1 {
+                font-size: 27px;
+            }
+
+            .form-actions {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+
+            .cancel-button,
+            .save-button {
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="add-food-page">
+
+    <div class="add-food-container">
+
+        <!-- Back -->
+        <div class="add-food-top">
+            <a href="/dashboard" class="add-food-back">
+                ← Back to Dashboard
+            </a>
+        </div>
+
+        <!-- Heading -->
+        <div class="add-food-heading">
+            <div class="add-food-heading-icon">
+                🍎
+            </div>
+
+            <div>
+                <h1>Add Food</h1>
+                <p>
+                    Track your food and get reminders before it expires.
+                </p>
+            </div>
+        </div>
+
+        <!-- Main Form Card -->
+        <div class="add-food-card">
+
+            <div class="form-section-title">
+                <div class="form-section-title-icon">
+                    🍱
+                </div>
+
+                <h2>Food Information</h2>
+            </div>
+
+            <form action="/add-food" method="POST" id="foodForm">
+
+                <div class="form-grid">
+
+                    <!-- Food Name -->
+                    <div class="form-group full-width">
+
+                        <label for="name">
+                            Food Name <span class="required">*</span>
+                        </label>
+
+                        <div class="input-with-icon">
+                            <span class="input-icon">🍎</span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                class="form-control"
+                                placeholder="e.g. Rice, Milk, Apples"
+                                required
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <p class="helper-text">
+                            Enter the name of the food you want to track.
+                        </p>
+
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="form-group">
+
+                        <label for="quantity">
+                            Quantity <span class="required">*</span>
+                        </label>
+
+                        <div class="input-with-icon">
+                            <span class="input-icon">⚖️</span>
+
+                            <input
+                                type="number"
+                                id="quantity"
+                                name="quantity"
+                                class="form-control"
+                                placeholder="e.g. 2"
+                                min="0.01"
+                                step="0.01"
+                                required
+                            >
+                        </div>
+
+                    </div>
+
+                    <!-- Unit -->
+                    <div class="form-group">
+
+                        <label for="unit">
+                            Unit <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="unit"
+                            name="unit"
+                            class="form-control"
+                            required
+                        >
+                            <option value="kg" selected>
+                                Kilogram (kg)
+                            </option>
+
+                            <option value="g">
+                                Gram (g)
+                            </option>
+
+                            <option value="litre">
+                                Litre (L)
+                            </option>
+
+                            <option value="ml">
+                                Millilitre (ml)
+                            </option>
+
+                            <option value="piece">
+                                Piece
+                            </option>
+
+                            <option value="packet">
+                                Packet
+                            </option>
+
+                            <option value="box">
+                                Box
+                            </option>
+                        </select>
+
+                    </div>
+
+                    <!-- Category -->
+                    <div class="form-group full-width">
+
+                        <label for="category">
+                            Food Category <span class="required">*</span>
+                        </label>
+
+                        <select
+                            id="category"
+                            name="category"
+                            class="form-control"
+                            required
+                        >
+                            <option value="" selected disabled>
+                                Select a category
+                            </option>
+
+                            <option value="Fruits">
+                                🍎 Fruits
+                            </option>
+
+                            <option value="Vegetables">
+                                🥕 Vegetables
+                            </option>
+
+                            <option value="Dairy">
+                                🥛 Dairy
+                            </option>
+
+                            <option value="Grains">
+                                🍚 Grains
+                            </option>
+
+                            <option value="Bakery">
+                                🍞 Bakery
+                            </option>
+
+                            <option value="Beverages">
+                                🥤 Beverages
+                            </option>
+
+                            <option value="Snacks">
+                                🍪 Snacks
+                            </option>
+
+                            <option value="Other">
+                                🍱 Other
+                            </option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                    <div class="form-section-title-icon">
+                        📅
+                    </div>
+
+                    <h2>Expiry Tracking</h2>
+                </div>
+
+                <div class="form-grid">
+
+                    <!-- Purchase Date -->
+                    <div class="form-group">
+
+                        <label for="purchase_date">
+                            Purchase Date <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="purchase_date"
+                            name="purchase_date"
+                            class="form-control"
+                            required
+                        >
+
+                        <div class="date-info">
+                            📦 When did you buy this food?
+                        </div>
+
+                    </div>
+
+                    <!-- Expiry Date -->
+                    <div class="form-group">
+
+                        <label for="expiry_date">
+                            Expiry Date <span class="required">*</span>
+                        </label>
+
+                        <input
+                            type="date"
+                            id="expiry_date"
+                            name="expiry_date"
+                            class="form-control"
+                            required
+                        >
+
+                        <div class="date-info">
+                            ⏰ We'll track this date for you.
+                        </div>
+
+                        <div id="expiryWarning" class="expiry-warning">
+                            ⚠️ Expiry date cannot be before the purchase date.
+                        </div>
+
+                    </div>
+
+                    <!-- Notes -->
+                    <div class="form-group full-width">
+
+                        <label for="notes">
+                            Notes <span class="optional">(Optional)</span>
+                        </label>
+
+                        <textarea
+                            id="notes"
+                            name="notes"
+                            class="form-control"
+                            placeholder="Add any extra information about this food..."
+                        ></textarea>
+
+                    </div>
+
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+
+                    <a href="/dashboard" class="cancel-button">
+                        Cancel
+                    </a>
+
+                    <button
+                        type="submit"
+                        class="save-button"
+                        id="saveButton"
+                    >
+                        💾 Save Food
+                    </button>
+
+                </div>
+
+                <p class="required-note">
+                    <span class="required">*</span>
+                    Required fields
+                </p>
+
+            </form>
+
+        </div>
+
+        <!-- Tips -->
+        <div class="tips-box">
+
+            <div class="tips-title">
+                💡 WasteLess Tip
+            </div>
+
+            <p>
+                Add expiry dates accurately so WasteLess can help you
+                identify food that should be used soon and reduce food waste.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    const purchaseDate = document.getElementById("purchase_date");
+    const expiryDate = document.getElementById("expiry_date");
+    const expiryWarning = document.getElementById("expiryWarning");
+    const foodForm = document.getElementById("foodForm");
+
+    // Set today's date as the default purchase date
+    const today = new Date().toISOString().split("T")[0];
+
+    purchaseDate.value = today;
+    purchaseDate.max = today;
+
+    // Expiry cannot be before purchase date
+    purchaseDate.addEventListener("change", function () {
+
+        expiryDate.min = purchaseDate.value;
+
+        if (
+            expiryDate.value &&
+            expiryDate.value < purchaseDate.value
+        ) {
+            expiryDate.value = "";
+        }
+
+        expiryWarning.style.display = "none";
+    });
+
+    expiryDate.addEventListener("change", function () {
+
+        if (
+            purchaseDate.value &&
+            expiryDate.value < purchaseDate.value
+        ) {
+            expiryWarning.style.display = "block";
+            expiryDate.value = "";
+        } else {
+            expiryWarning.style.display = "none";
+        }
+
+    });
+
+    foodForm.addEventListener("submit", function (event) {
+
+        if (
+            purchaseDate.value &&
+            expiryDate.value &&
+            expiryDate.value < purchaseDate.value
+        ) {
+            event.preventDefault();
+
+            expiryWarning.style.display = "block";
+
+            alert(
+                "Please select a valid expiry date. " +
+                "The expiry date cannot be before the purchase date."
+            );
+
+            return;
+        }
+
+        const saveButton = document.getElementById("saveButton");
+
+        saveButton.innerHTML = "⏳ Saving...";
+        saveButton.disabled = true;
+    });
+</script>
+
+</body>
+</html>

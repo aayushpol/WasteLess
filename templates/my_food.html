@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>My Food - WasteLess</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        .myfood-page {
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: #f4f8f5;
+        }
+
+        .myfood-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .myfood-back {
+            display: inline-block;
+            color: #2e7d32;
+            font-weight: 700;
+            margin-bottom: 22px;
+        }
+
+        .myfood-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .myfood-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .myfood-title-icon {
+            width: 58px;
+            height: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8f5e9;
+            border-radius: 17px;
+            font-size: 30px;
+        }
+
+        .myfood-title h1 {
+            font-size: 30px;
+            margin-bottom: 5px;
+        }
+
+        .myfood-title p {
+            color: #777;
+        }
+
+        .add-food-btn {
+            display: inline-block;
+            padding: 13px 20px;
+            background: #2e7d32;
+            color: white;
+            border-radius: 11px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .food-count-card {
+            background: white;
+            padding: 22px 25px;
+            border-radius: 18px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.04);
+        }
+
+        .food-count-icon {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #e8f5e9;
+            border-radius: 14px;
+            font-size: 25px;
+        }
+
+        .food-count-card span {
+            display: block;
+            color: #888;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .food-count-card strong {
+            font-size: 24px;
+        }
+
+        .myfood-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+        }
+
+        .myfood-card {
+            background: white;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e9efea;
+        }
+
+        .myfood-card-top {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .myfood-icon {
+            width: 58px;
+            height: 58px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f1f8f3;
+            border-radius: 16px;
+            font-size: 29px;
+        }
+
+        .myfood-name {
+            flex: 1;
+        }
+
+        .myfood-name h3 {
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .myfood-category {
+            color: #888;
+            font-size: 13px;
+        }
+
+        .food-status {
+            padding: 7px 11px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .food-status.fresh {
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+
+        .food-status.soon {
+            background: #fff8e1;
+            color: #f57f17;
+        }
+
+        .food-status.today {
+            background: #fff3e0;
+            color: #e65100;
+        }
+
+        .food-status.expired {
+            background: #ffebee;
+            color: #c62828;
+        }
+
+        .myfood-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 17px;
+        }
+
+        .myfood-detail {
+            background: #f8faf8;
+            padding: 13px;
+            border-radius: 12px;
+        }
+
+        .myfood-detail span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .myfood-detail strong {
+            font-size: 14px;
+        }
+
+        .myfood-expiry {
+            padding: 13px 15px;
+            background: #f7faf7;
+            border-radius: 12px;
+            margin-bottom: 15px;
+        }
+
+        .myfood-expiry span {
+            display: block;
+            color: #888;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .myfood-expiry strong {
+            font-size: 14px;
+        }
+
+        .myfood-notes {
+            padding-top: 14px;
+            border-top: 1px solid #edf0ed;
+            color: #666;
+            font-size: 13px;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+
+        .myfood-notes strong {
+            color: #333;
+        }
+
+        /* ACTION BUTTONS */
+
+        .myfood-actions {
+            display: flex;
+            gap: 10px;
+            padding-top: 15px;
+            border-top: 1px solid #edf0ed;
+        }
+
+        .ai-food-btn {
+            flex: 1;
+            padding: 11px 14px;
+            text-align: center;
+            border-radius: 10px;
+            background: #eef7ef;
+            color: #2e7d32;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .delete-food-btn {
+            padding: 11px 16px;
+            border: none;
+            border-radius: 10px;
+            background: #ffebee;
+            color: #c62828;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .delete-food-btn:hover {
+            background: #ffcdd2;
+        }
+
+        .myfood-empty {
+            background: white;
+            border-radius: 22px;
+            padding: 60px 25px;
+            text-align: center;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.04);
+        }
+
+        .myfood-empty-icon {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .myfood-empty h2 {
+            margin-bottom: 8px;
+        }
+
+        .myfood-empty p {
+            color: #777;
+            margin-bottom: 22px;
+        }
+
+        .myfood-footer {
+            text-align: center;
+            color: #999;
+            font-size: 13px;
+            padding: 25px 0 5px;
+        }
+
+        @media (max-width: 750px) {
+
+            .myfood-page {
+                padding: 25px 15px;
+            }
+
+            .myfood-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .myfood-title h1 {
+                font-size: 25px;
+            }
+
+            .myfood-list {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        @media (max-width: 450px) {
+
+            .myfood-card-top {
+                align-items: flex-start;
+            }
+
+            .myfood-details {
+                grid-template-columns: 1fr;
+            }
+
+            .food-status {
+                font-size: 10px;
+            }
+
+            .myfood-actions {
+                flex-direction: column;
+            }
+
+            .delete-food-btn {
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="myfood-page">
+
+    <div class="myfood-container">
+
+
+        <!-- BACK -->
+
+        <a href="/dashboard"
+           class="myfood-back">
+
+            ← Back to Dashboard
+
+        </a>
+
+
+        <!-- HEADER -->
+
+        <div class="myfood-header">
+
+            <div class="myfood-title">
+
+                <div class="myfood-title-icon">
+                    🍎
+                </div>
+
+                <div>
+
+                    <h1>
+                        My Food
+                    </h1>
+
+                    <p>
+                        Track your food and monitor expiry dates.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <a href="/add-food"
+               class="add-food-btn">
+
+                + Add Food
+
+            </a>
+
+        </div>
+
+
+        <!-- TOTAL FOOD -->
+
+        <div class="food-count-card">
+
+            <div class="food-count-icon">
+                📦
+            </div>
+
+            <div>
+
+                <span>
+                    Total Food Items
+                </span>
+
+                <strong>
+                    {{ foods|length }}
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        {% if foods %}
+
+
+        <!-- FOOD LIST -->
+
+        <div class="myfood-list">
+
+
+            {% for food in foods %}
+
+
+            <div class="myfood-card">
+
+
+                <!-- FOOD HEADER -->
+
+                <div class="myfood-card-top">
+
+
+                    <div class="myfood-icon">
+
+                        {% if food.category == "Fruits" %}
+
+                            🍎
+
+                        {% elif food.category == "Vegetables" %}
+
+                            🥦
+
+                        {% elif food.category == "Dairy" %}
+
+                            🥛
+
+                        {% elif food.category == "Grains" %}
+
+                            🌾
+
+                        {% elif food.category == "Meat" %}
+
+                            🍗
+
+                        {% elif food.category == "Beverages" %}
+
+                            🥤
+
+                        {% else %}
+
+                            🍱
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <div class="myfood-name">
+
+                        <h3>
+                            {{ food.name }}
+                        </h3>
+
+                        <div class="myfood-category">
+                            {{ food.category }}
+                        </div>
+
+                    </div>
+
+
+                    <span
+                        class="food-status"
+                        data-expiry="{{ food.expiry_date }}">
+
+                        Checking...
+
+                    </span>
+
+
+                </div>
+
+
+                <!-- FOOD DETAILS -->
+
+                <div class="myfood-details">
+
+
+                    <div class="myfood-detail">
+
+                        <span>
+                            Quantity
+                        </span>
+
+                        <strong>
+                            {{ food.quantity }} {{ food.unit }}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="myfood-detail">
+
+                        <span>
+                            Purchased
+                        </span>
+
+                        <strong>
+                            {{ food.purchase_date }}
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- EXPIRY -->
+
+                <div class="myfood-expiry">
+
+                    <span>
+                        EXPIRY DATE
+                    </span>
+
+                    <strong>
+                        {{ food.expiry_date }}
+                    </strong>
+
+                </div>
+
+
+                <!-- NOTES -->
+
+                {% if food.notes %}
+
+                <div class="myfood-notes">
+
+                    <strong>
+                        📝 Notes:
+                    </strong>
+
+                    {{ food.notes }}
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- ACTIONS -->
+
+                <div class="myfood-actions">
+
+
+                    <a href="/ai-assistant"
+                       class="ai-food-btn">
+
+                        🤖 AI Suggestions
+
+                    </a>
+
+
+                    <form
+                        action="/delete-food/{{ food.id }}"
+                        method="POST"
+                        onsubmit="return confirmDelete('{{ food.name }}');">
+
+                        <button
+                            type="submit"
+                            class="delete-food-btn">
+
+                            🗑️ Delete
+
+                        </button>
+
+                    </form>
+
+
+                </div>
+
+
+            </div>
+
+
+            {% endfor %}
+
+
+        </div>
+
+
+        {% else %}
+
+
+        <!-- EMPTY STATE -->
+
+        <div class="myfood-empty">
+
+
+            <div class="myfood-empty-icon">
+                🍎
+            </div>
+
+
+            <h2>
+                No Food Added Yet
+            </h2>
+
+
+            <p>
+                Start tracking your food to monitor expiry dates
+                and reduce unnecessary waste.
+            </p>
+
+
+            <a href="/add-food"
+               class="add-food-btn">
+
+                + Add Your First Food
+
+            </a>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+        <!-- FOOTER -->
+
+        <div class="myfood-footer">
+
+            <p>
+                WasteLess • Track. Save. Share. 🌱
+            </p>
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<!-- EXPIRY STATUS -->
+
+<script>
+
+    const statusElements =
+        document.querySelectorAll(".food-status");
+
+
+    const today =
+        new Date();
+
+
+    today.setHours(
+        0,
+        0,
+        0,
+        0
+    );
+
+
+    statusElements.forEach(
+        function(statusElement) {
+
+
+            const expiryString =
+                statusElement.getAttribute(
+                    "data-expiry"
+                );
+
+
+            const expiryDate =
+                new Date(
+                    expiryString + "T00:00:00"
+                );
+
+
+            const difference =
+                expiryDate - today;
+
+
+            const daysLeft =
+                Math.ceil(
+                    difference /
+                    (1000 * 60 * 60 * 24)
+                );
+
+
+            if (daysLeft < 0) {
+
+                statusElement.textContent =
+                    "🔴 Expired";
+
+                statusElement.classList.add(
+                    "expired"
+                );
+
+            }
+
+            else if (daysLeft === 0) {
+
+                statusElement.textContent =
+                    "🟠 Expires Today";
+
+                statusElement.classList.add(
+                    "today"
+                );
+
+            }
+
+            else if (daysLeft <= 2) {
+
+                statusElement.textContent =
+                    "🟡 Expires Soon";
+
+                statusElement.classList.add(
+                    "soon"
+                );
+
+            }
+
+            else {
+
+                statusElement.textContent =
+                    "🟢 Fresh";
+
+                statusElement.classList.add(
+                    "fresh"
+                );
+
+            }
+
+        }
+    );
+
+
+    // DELETE CONFIRMATION
+
+    function confirmDelete(foodName) {
+
+        return confirm(
+            "Are you sure you want to delete " +
+            foodName +
+            " from My Food?"
+        );
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

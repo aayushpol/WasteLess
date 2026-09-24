@@ -15,6 +15,12 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+# Create database tables when the app starts.
+# This is required for deployment with Gunicorn/Render because
+# the __main__ block is not executed there.
+with app.app_context():
+    db.create_all()
+
 
 # =========================================================
 # FOOD DATABASE TABLE
